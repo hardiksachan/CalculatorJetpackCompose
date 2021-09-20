@@ -71,7 +71,16 @@ class CalculatorLogic(
     private fun handleEvaluate() {
         if (!isLastNumeric) return
         launch {
-            calculatorFacade.evaluateExpression(viewModel.primaryDisplay) {
+            val exp = viewModel.primaryDisplay.map { char ->
+                when (char.toString()) {
+                    UnicodeSymbols.plus -> "+"
+                    UnicodeSymbols.minus -> "-"
+                    UnicodeSymbols.multiply -> "*"
+                    UnicodeSymbols.divide -> "/"
+                    else -> char.toString()
+                }
+            }.joinToString(separator = "")
+            calculatorFacade.evaluateExpression(exp) {
                 when (it) {
                     is ResultWrapper.Failure -> container.showError()
                     is ResultWrapper.Success -> {

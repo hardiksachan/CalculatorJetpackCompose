@@ -36,7 +36,7 @@ class CalculatorActivity : ComponentActivity(), CalculatorContainer {
             }
         }
 
-        logic = buildCalculatorLogic(this, viewModel, applicationContext)
+        logic = buildCalculatorLogic(this, viewModel)
     }
 
     override fun onStop() {

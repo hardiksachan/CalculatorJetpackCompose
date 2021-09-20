@@ -211,10 +211,11 @@ fun Keypad(
                 verticalArrangement = Arrangement.SpaceEvenly
             ) {
                 SpecialOperatorButton(
-                    text = UnicodeSymbols.bracketOpen,
-                    modifier = Modifier.clickable {
-                        onEventHandler(CalculatorEvent.Input(UnicodeSymbols.bracketOpen))
-                    }
+//                    text = "UnicodeSymbols.bracketOpen",
+                    text = "",
+//                    modifier = Modifier.clickable {
+//                        onEventHandler(CalculatorEvent.Input(UnicodeSymbols.bracketOpen))
+//                    }
                 )
                 NumberButton(text = "8",
                     modifier = Modifier.clickable {
@@ -239,10 +240,11 @@ fun Keypad(
                 verticalArrangement = Arrangement.SpaceEvenly
             ) {
                 SpecialOperatorButton(
-                    text = UnicodeSymbols.bracketClose,
-                    modifier = Modifier.clickable {
-                        onEventHandler(CalculatorEvent.Input(UnicodeSymbols.bracketClose))
-                    }
+//                    text = "UnicodeSymbols.bracketClose",
+                    text = "",
+//                    modifier = Modifier.clickable {
+//                        onEventHandler(CalculatorEvent.Input(UnicodeSymbols.bracketClose))
+//                    }
                 )
                 NumberButton(text = "9",
                     modifier = Modifier.clickable {
