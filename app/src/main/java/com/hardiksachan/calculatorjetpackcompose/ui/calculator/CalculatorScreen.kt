@@ -7,12 +7,15 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
@@ -43,38 +46,19 @@ fun HomeScreen(
                 verticalArrangement = Arrangement.Bottom
             ) {
 
-                var primaryDisplay by remember {
-                    mutableStateOf("")
+                val (primaryDisplay, setPrimaryDisplay) = remember {
+                    mutableStateOf(viewModel.primaryDisplay)
                 }
 
-                var secondaryDisplay by remember {
-                    mutableStateOf("")
+                val (secondaryDisplay, setSecondaryDisplay) = remember {
+                    mutableStateOf(viewModel.secondaryDisplay)
                 }
 
-                viewModel.subPrimaryDisplay = {
-                    primaryDisplay = it
-                }
+                viewModel.subPrimaryDisplay = setPrimaryDisplay
+                viewModel.subSecondaryDisplay = setSecondaryDisplay
 
-                viewModel.subSecondaryDisplay = {
-                    secondaryDisplay = it
-                }
-
-                Text(
-                    text = buildDisplayString(message = secondaryDisplay),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 32.dp),
-                    style = MaterialTheme.typography.h5,
-                    textAlign = TextAlign.End
-                )
-                Text(
-                    text = buildDisplayString(message = primaryDisplay),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 32.dp),
-                    style = MaterialTheme.typography.h2,
-                    textAlign = TextAlign.End
-                )
+                Display(message = secondaryDisplay, style = MaterialTheme.typography.h5)
+                Display(message = primaryDisplay, style = MaterialTheme.typography.h2)
                 Spacer(modifier = Modifier.height(32.dp))
                 Keypad(
                     modifier = Modifier
@@ -116,6 +100,23 @@ fun buildDisplayString(message: String) = buildAnnotatedString {
 }
 
 @Composable
+fun Display(
+    message: String,
+    style: TextStyle,
+    modifier: Modifier = Modifier
+) {
+    Text(
+        text = buildDisplayString(message = message),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 32.dp)
+            .then(modifier),
+        style = style,
+        textAlign = TextAlign.End
+    )
+}
+
+@Composable
 fun ThemeSelector(
     modifier: Modifier = Modifier,
     iconSize: Dp = 45.dp,
@@ -133,9 +134,9 @@ fun ThemeSelector(
             painter = painterResource(
                 id =
                 if (isDarkTheme)
-                    R.drawable.ic_moon
-                else
                     R.drawable.ic_sun
+                else
+                    R.drawable.ic_moon
             ),
             contentDescription = "theme icon",
             modifier = Modifier
