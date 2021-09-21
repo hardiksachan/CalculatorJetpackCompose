@@ -14,15 +14,11 @@ logic, a seperate class is used for it. To learn more about it, check out Ryan c
 
 ##### Light UI
 
-<img src="/screenshots/light_1.jpg" width="256"/>
-&nbsp;&nbsp;
-<img src="/screenshots/light_2.jpg" width="256"/>
+<img src="/screenshots/light_1.jpg" width="256"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/screenshots/light_2.jpg" width="256"/>
 
 ##### Dark UI
 
-<img src="/screenshots/dark_1.jpg" width="256"/>
-&nbsp;&nbsp;
-<img src="/screenshots/dark_2.jpg" width="256"/>
+<img src="/screenshots/dark_1.jpg" width="256"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/screenshots/dark_2.jpg" width="256"/>
 
 ---
 
